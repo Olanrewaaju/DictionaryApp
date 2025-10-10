@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  convex_bottom_bar: ^3.2.0
   flutter:
     sdk: flutter
   provider: ^6.1.5+1
@@ -96,134 +97,134 @@ flutter:
 
   - family: NotoSans
     fonts:
-      - asset: assets/fonts/NotoSans_ExtraLight.ttf
+      - asset: assets/fonts/NotoSans-ExtraLight.ttf
         weight: 200
-      - asset: assets/fonts/NotoSans_Light.ttf
+      - asset: assets/fonts/NotoSans-Light.ttf
         weight: 300
-      - asset: assets/fonts/NotoSans_Regular.ttf
+      - asset: assets/fonts/NotoSans-Regular.ttf
         weight: 400
-      - asset: assets/fonts/NotoSans_Medium.ttf
+      - asset: assets/fonts/NotoSans-Medium.ttf
         weight: 500
-      - asset: assets/fonts/NotoSans_SemiBold.ttf
+      - asset: assets/fonts/NotoSans-SemiBold.ttf
         weight: 600
-      - asset: assets/fonts/NotoSans_Bold.ttf
+      - asset: assets/fonts/NotoSans-Bold.ttf
         weight: 700
-      - asset: assets/fonts/NotoSans_ExtraBold.ttf
+      - asset: assets/fonts/NotoSans-ExtraBold.ttf
         weight: 800
-      - asset: assets/fonts/NotoSans_Black.ttf
+      - asset: assets/fonts/NotoSans-Black.ttf
         weight: 900
-      - asset: assets/fonts/NotoSans_Italic.ttf
+      - asset: assets/fonts/NotoSans-Italic.ttf
         weight: 400
         style: italic
-      - asset: assets/fonts/NotoSans_BoldItalic.ttf
+      - asset: assets/fonts/NotoSans-BoldItalic.ttf
         weight: 700
         style: italic
-      - asset: assets/fonts/NotoSans_ExtraBoldItalic.ttf
+      - asset: assets/fonts/NotoSans-ExtraBoldItalic.ttf
         weight: 800
         style: italic
-      - asset: assets/fonts/NotoSans_BlackItalic.ttf
+      - asset: assets/fonts/NotoSans-BlackItalic.ttf
         weight: 900
         style: italic
 
 
-  - family: NotoSans_SemiCondensed
-    fonts:
-      - asset: assets/fonts/NotoSans_SemiCondensed_ExtraLight.ttf
-        weight: 200
-      - asset: assets/fonts/NotoSans_SemiCondensed_Light.ttf
-        weight: 300
-      - asset: assets/fonts/NotoSans_SemiCondensed_Regular.ttf
-        weight: 400
-      - asset: assets/fonts/NotoSans_SemiCondensed_Medium.ttf
-        weight: 500
-      - asset: assets/fonts/NotoSans_SemiCondensed_SemiBold.ttf
-        weight: 600
-      - asset: assets/fonts/NotoSans_SemiCondensed_Bold.ttf
-        weight: 700
-      - asset: assets/fonts/NotoSans_SemiCondensed_ExtraBold.ttf
-        weight: 800
-      - asset: assets/fonts/NotoSans_SemiCondensed_Black.ttf
-        weight: 900
-      - asset: assets/fonts/NotoSans_SemiCondensed_Italic.ttf
-        weight: 400
-        style: italic
-      - asset: assets/fonts/NotoSans_SemiCondensed_BoldItalic.ttf
-        weight: 700
-        style: italic
-      - asset: assets/fonts/NotoSans_SemiCondensed_ExtraBoldItalic.ttf
-        weight: 800
-        style: italic
-      - asset: assets/fonts/NotoSans_SemiCondensed_BlackItalic.ttf
-        weight: 900
-        style: italic
+  # - family: NotoSans_SemiCondensed
+  #   fonts:
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_ExtraLight.ttf
+  #       weight: 200
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_Light.ttf
+  #       weight: 300
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_Regular.ttf
+  #       weight: 400
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_Medium.ttf
+  #       weight: 500
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_SemiBold.ttf
+  #       weight: 600
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_Bold.ttf
+  #       weight: 700
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_ExtraBold.ttf
+  #       weight: 800
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_Black.ttf
+  #       weight: 900
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_Italic.ttf
+  #       weight: 400
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_BoldItalic.ttf
+  #       weight: 700
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_ExtraBoldItalic.ttf
+  #       weight: 800
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_SemiCondensed_BlackItalic.ttf
+  #       weight: 900
+  #       style: italic
 
-  # =========================
-  # CONDENSED
-  # =========================
-  - family: NotoSans_Condensed
-    fonts:
-      - asset: assets/fonts/NotoSans_Condensed_ExtraLight.ttf
-        weight: 200
-      - asset: assets/fonts/NotoSans_Condensed_Light.ttf
-        weight: 300
-      - asset: assets/fonts/NotoSans_Condensed_Regular.ttf
-        weight: 400
-      - asset: assets/fonts/NotoSans_Condensed_Medium.ttf
-        weight: 500
-      - asset: assets/fonts/NotoSans_Condensed_SemiBold.ttf
-        weight: 600
-      - asset: assets/fonts/NotoSans_Condensed_Bold.ttf
-        weight: 700
-      - asset: assets/fonts/NotoSans_Condensed_ExtraBold.ttf
-        weight: 800
-      - asset: assets/fonts/NotoSans_Condensed_Black.ttf
-        weight: 900
-      - asset: assets/fonts/NotoSans_Condensed_Italic.ttf
-        weight: 400
-        style: italic
-      - asset: assets/fonts/NotoSans_Condensed_BoldItalic.ttf
-        weight: 700
-        style: italic
-      - asset: assets/fonts/NotoSans_Condensed_ExtraBoldItalic.ttf
-        weight: 800
-        style: italic
-      - asset: assets/fonts/NotoSans_Condensed_BlackItalic.ttf
-        weight: 900
-        style: italic
+  # # =========================
+  # # CONDENSED
+  # # =========================
+  # - family: NotoSans_Condensed
+  #   fonts:
+  #     - asset: assets/fonts/NotoSans_Condensed_ExtraLight.ttf
+  #       weight: 200
+  #     - asset: assets/fonts/NotoSans_Condensed_Light.ttf
+  #       weight: 300
+  #     - asset: assets/fonts/NotoSans_Condensed_Regular.ttf
+  #       weight: 400
+  #     - asset: assets/fonts/NotoSans_Condensed_Medium.ttf
+  #       weight: 500
+  #     - asset: assets/fonts/NotoSans_Condensed_SemiBold.ttf
+  #       weight: 600
+  #     - asset: assets/fonts/NotoSans_Condensed_Bold.ttf
+  #       weight: 700
+  #     - asset: assets/fonts/NotoSans_Condensed_ExtraBold.ttf
+  #       weight: 800
+  #     - asset: assets/fonts/NotoSans_Condensed_Black.ttf
+  #       weight: 900
+  #     - asset: assets/fonts/NotoSans_Condensed_Italic.ttf
+  #       weight: 400
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_Condensed_BoldItalic.ttf
+  #       weight: 700
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_Condensed_ExtraBoldItalic.ttf
+  #       weight: 800
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_Condensed_BlackItalic.ttf
+  #       weight: 900
+  #       style: italic
 
-  # =========================
-  # EXTRA CONDENSED
-  # =========================
-  - family: NotoSans_ExtraCondensed
-    fonts:
-      - asset: assets/fonts/NotoSans_ExtraCondensed_ExtraLight.ttf
-        weight: 200
-      - asset: assets/fonts/NotoSans_ExtraCondensed_Light.ttf
-        weight: 300
-      - asset: assets/fonts/NotoSans_ExtraCondensed_Regular.ttf
-        weight: 400
-      - asset: assets/fonts/NotoSans_ExtraCondensed_Medium.ttf
-        weight: 500
-      - asset: assets/fonts/NotoSans_ExtraCondensed_SemiBold.ttf
-        weight: 600
-      - asset: assets/fonts/NotoSans_ExtraCondensed_Bold.ttf
-        weight: 700
-      - asset: assets/fonts/NotoSans_ExtraCondensed_ExtraBold.ttf
-        weight: 800
-      - asset: assets/fonts/NotoSans_ExtraCondensed_Black.ttf
-        weight: 900
-      - asset: assets/fonts/NotoSans_ExtraCondensed_Italic.ttf
-        weight: 400
-        style: italic
-      - asset: assets/fonts/NotoSans_ExtraCondensed_BoldItalic.ttf
-        weight: 700
-        style: italic
-      - asset: assets/fonts/NotoSans_ExtraCondensed_ExtraBoldItalic.ttf
-        weight: 800
-        style: italic
-      - asset: assets/fonts/NotoSans_ExtraCondensed_BlackItalic.ttf
-        weight: 900
-        style: italic
+  # # =========================
+  # # EXTRA CONDENSED
+  # # =========================
+  # - family: NotoSans_ExtraCondensed
+  #   fonts:
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_ExtraLight.ttf
+  #       weight: 200
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_Light.ttf
+  #       weight: 300
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_Regular.ttf
+  #       weight: 400
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_Medium.ttf
+  #       weight: 500
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_SemiBold.ttf
+  #       weight: 600
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_Bold.ttf
+  #       weight: 700
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_ExtraBold.ttf
+  #       weight: 800
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_Black.ttf
+  #       weight: 900
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_Italic.ttf
+  #       weight: 400
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_BoldItalic.ttf
+  #       weight: 700
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_ExtraBoldItalic.ttf
+  #       weight: 800
+  #       style: italic
+  #     - asset: assets/fonts/NotoSans_ExtraCondensed_BlackItalic.ttf
+  #       weight: 900
+  #       style: italic
 
   
   # For details regarding fonts from package dependencies,

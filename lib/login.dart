@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'fieldfortext.dart';
 import 'home.dart';
 import 'apps_providers/usernamenotif.dart';
+import 'bottom_nav.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -22,7 +23,7 @@ class _LoginState extends State<Login> {
       context,
       MaterialPageRoute(
         builder: (context) {
-          return Home();
+          return BottomNavBar();
         },
       ),
     );

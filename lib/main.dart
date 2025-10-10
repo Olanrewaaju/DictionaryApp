@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'login.dart';
 import 'apps_providers/usernamenotif.dart';
+import 'apps_providers/wordvalue.dart';
+import 'bottom_nav.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) {
-        return Usernamenotif();
-      },
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Usernamenotif()),
+        ChangeNotifierProvider(create: (_) => Wordvalue()),
+      ],
       child: const MyApp(),
     ),
   );
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
 
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
             shape: WidgetStateProperty.all(
@@ -40,7 +44,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Manrope',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Login(),
+      home: const BottomNavBar(),
     );
   }
 }
