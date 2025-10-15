@@ -1,7 +1,5 @@
-import 'package:dictionary_app/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'login.dart';
 import 'apps_providers/usernamenotif.dart';
 import 'apps_providers/wordvalue.dart';
 import 'bottom_nav.dart';
