@@ -1,3 +1,5 @@
+import 'package:dictionary_app/apps_providers/wordvalue.dart';
+import 'package:dictionary_app/full_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -103,6 +105,17 @@ class _HomeState extends State<Home> {
     }
   }
 
+  void onRessed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return FullDetail(navWord: name);
+        },
+      ),
+    );
+    context.read<Wordvalue>().wordChanger(name);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -147,7 +160,7 @@ class _HomeState extends State<Home> {
                 style: ButtonStyle(
                   padding: WidgetStatePropertyAll(EdgeInsets.zero),
                 ),
-                onPressed: onPressed,
+                onPressed: onRessed,
                 child: Text(
                   name,
                   style: TextStyle(

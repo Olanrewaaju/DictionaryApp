@@ -1,3 +1,4 @@
+import 'package:dictionary_app/apps_providers/star_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/usernamenotif.dart';
@@ -10,6 +11,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => Usernamenotif()),
         ChangeNotifierProvider(create: (_) => Wordvalue()),
+        ChangeNotifierProvider(create: (_) => StarNotifier()),
       ],
       child: const MyApp(),
     ),

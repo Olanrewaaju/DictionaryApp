@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/wordvalue.dart';
 import 'package:http/http.dart' as http;
+import 'apps_providers/wordvalue.dart';
+import 'apps_providers/star_notifier.dart';
 
 class FullDetail extends StatefulWidget {
-  const FullDetail({super.key});
+  String navWord;
+  FullDetail({super.key, required this.navWord});
 
   @override
   State<FullDetail> createState() => _FullDetailState();
@@ -14,14 +17,20 @@ class FullDetail extends StatefulWidget {
 class _FullDetailState extends State<FullDetail> {
   late Future _value;
   late String searchedWord;
+  String navWord = '';
 
   @override
   void initState() {
     super.initState();
-    searchedWord = '';
+    // searchedWord = widget.navWord;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
-        searchedWord = context.read<Wordvalue>().word;
+        if (navWord.isEmpty) {
+          searchedWord = context.read<Wordvalue>().word;
+        } else {
+          navWord == searchedWord;
+        }
+
         _value = fetchWordDetails();
       });
     });
@@ -29,6 +38,7 @@ class _FullDetailState extends State<FullDetail> {
 
   Future fetchWordDetails() async {
     final searchedWord = context.read<Wordvalue>().word;
+
     final url = Uri.parse(
       'https://www.dictionaryapi.com/api/v3/references/collegiate/json/$searchedWord?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
@@ -47,17 +57,29 @@ class _FullDetailState extends State<FullDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final searchedWord = context.read<Wordvalue>().word;
+    // final searchedWord = context.read<Wordvalue>().word;
+    final starData = context.watch<StarNotifier>().isBookmarked(searchedWord);
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Icon(Icons.star, size: 26, color: Colors.grey),
-            SizedBox(width: 30),
             Icon(Icons.reply, size: 26, color: Colors.grey),
+            SizedBox(width: 30),
+
+            IconButton(
+              onPressed: () {
+                context.read<StarNotifier>().toggleBookmark(searchedWord);
+              },
+
+              icon: Icon(
+                color: starData ? Colors.amberAccent : Colors.grey,
+                size: 26,
+                Icons.star,
+              ),
+            ),
             SizedBox(width: 30),
             Icon(Icons.more_horiz, size: 26, color: Colors.grey),
           ],
@@ -81,14 +103,60 @@ class _FullDetailState extends State<FullDetail> {
               return const Center(child: Text("No data found"));
             }
 
-            // Handle cases where the API returns string suggestions instead of word objects
+            // ✅ Handle cases where the API returns string suggestions
             if (wordData is List &&
                 wordData.isNotEmpty &&
                 wordData[0] is String) {
               return Center(
-                child: Text(
-                  "Did you mean: ${wordData.take(5).join(', ')}?",
-                  style: const TextStyle(fontSize: 16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Did you mean:",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        for (int i = 0; i < wordData.length && i < 5; i++)
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              // backgroundColor: Colors.grey[200],
+                              // foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                                vertical: 8,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: () {
+                              final suggestion = wordData[i];
+
+                              context.read<Wordvalue>().wordChanger(suggestion);
+
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      FullDetail(navWord: suggestion),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              wordData[i],
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
               );
             }
@@ -100,8 +168,13 @@ class _FullDetailState extends State<FullDetail> {
             final partOfSpeech = first['fl'] ?? '—';
             final definitions = <String>[];
             final examples = <String>[];
+            // final variants = first['stems'];
 
-            // Safely extract definitions and examples
+            final stems =
+                (first['meta'] != null && first['meta']['stems'] != null)
+                ? List<String>.from(first['meta']['stems'])
+                : <String>[];
+            // Extract definitions and examples safely
             if (first['def'] != null && first['def'] is List) {
               for (var def in first['def']) {
                 if (def['sseq'] != null && def['sseq'] is List) {
@@ -157,7 +230,7 @@ class _FullDetailState extends State<FullDetail> {
               }
             } catch (_) {}
 
-            // ✅ Clean up definitions before displaying
+            // ✅ Clean definitions before displaying
             final cleanDefinitions = definitions
                 .where((def) => def.trim().isNotEmpty)
                 .toList();
@@ -165,12 +238,19 @@ class _FullDetailState extends State<FullDetail> {
             return ListView(
               padding: const EdgeInsets.only(top: 40),
               children: [
-                Text(
-                  word,
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.w600,
-                  ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      word,
+                      style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(' ($partOfSpeech)', style: TextStyle(fontSize: 14)),
+                  ],
                 ),
                 const SizedBox(height: 2),
                 Text(
@@ -181,18 +261,19 @@ class _FullDetailState extends State<FullDetail> {
                     fontSize: 20,
                   ),
                 ),
-                const SizedBox(height: 36),
-                Text(
-                  partOfSpeech.toUpperCase(),
-                  style: const TextStyle(fontWeight: FontWeight.w500),
-                ),
+                SizedBox(width: 16),
+                const SizedBox(height: 24),
+                // Text(
+                //   partOfSpeech.toUpperCase(),
+                //   style: const TextStyle(fontWeight: FontWeight.w500),
+                // ),
                 const SizedBox(height: 24),
 
                 const Text(
                   "DEFINITIONS",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black54,
+                    color: Colors.black87,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -210,13 +291,18 @@ class _FullDetailState extends State<FullDetail> {
                     ),
                   ),
 
-                // Examples
                 if (examples.isNotEmpty) ...[
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 30),
                   const Text(
-                    "Examples",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    "EXAMPLES",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                  Divider(color: Colors.black26, thickness: 0.88),
+
                   const SizedBox(height: 8),
                   for (var ex in examples)
                     Padding(
@@ -232,11 +318,17 @@ class _FullDetailState extends State<FullDetail> {
                     ),
                 ],
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 30),
                 const Text(
-                  "Etymology",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  "ETYMOLOGY",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
+                Divider(color: Colors.black26, thickness: 0.88),
+
                 const SizedBox(height: 6),
                 Text(
                   etymology,
@@ -245,6 +337,17 @@ class _FullDetailState extends State<FullDetail> {
                     fontStyle: FontStyle.italic,
                   ),
                 ),
+                const SizedBox(height: 30),
+                Text(
+                  "VARIANT WORDS",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Divider(color: Colors.black26, thickness: 0.88),
+                Text(stems.join(', ')),
               ],
             );
           },

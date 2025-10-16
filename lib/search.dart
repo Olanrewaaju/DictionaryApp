@@ -36,7 +36,7 @@ class _SearchState extends State<Search> {
     if (query.isNotEmpty) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const FullDetail()),
+        MaterialPageRoute(builder: (context) => FullDetail(navWord: query)),
       );
     }
   }

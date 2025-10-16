@@ -14,7 +14,12 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int selectedIndex = 0;
 
-  final List<Widget> pages = [const Home(), const Starred(), const Settings()];
+  final List<Widget> pages = [
+    const Home(),
+    const Search(),
+    const Starred(),
+    const Settings(),
+  ];
 
   void onItemTapped(int index) {
     if (index == 1) {
