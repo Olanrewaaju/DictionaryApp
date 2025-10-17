@@ -54,16 +54,16 @@ class _HomeState extends State<Home> {
 
   Future<List<dynamic>> wotd() async {
     final dyslexicUrl = Uri.parse(
-      'https://api.dictionaryapi.dev/api/v2/entries/en/dyslexic',
+      'https://www.dictionaryapi.com/api/v3/references/collegiate/json/voluminous?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
     final ephemeralUrl = Uri.parse(
-      'https://api.dictionaryapi.dev/api/v2/entries/en/ephemeral',
+      'https://www.dictionaryapi.com/api/v3/references/collegiate/json/silhouette?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
     final garmentUrl = Uri.parse(
-      'https://api.dictionaryapi.dev/api/v2/entries/en/garment',
+      'https://www.dictionaryapi.com/api/v3/references/collegiate/json/colleague?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
     final expectorantUrl = Uri.parse(
-      'https://api.dictionaryapi.dev/api/v2/entries/en/expectorant',
+      'https://www.dictionaryapi.com/api/v3/references/collegiate/json/expectorant?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
     final convictUrl = Uri.parse(
       'https://api.dictionaryapi.dev/api/v2/entries/en/convict',
@@ -100,7 +100,13 @@ class _HomeState extends State<Home> {
         convictData,
         refuseData,
       ];
-    } else {
+    }
+    // else {
+    //   throw Exception('Failed to fetch words');
+    // }
+    else {
+      print('❌ One or more requests failed!');
+      print(responses.map((r) => r.statusCode).toList());
       throw Exception('Failed to fetch words');
     }
   }
@@ -182,6 +188,8 @@ class _HomeState extends State<Home> {
                     );
                   }
                   if (snapshot.hasError) {
+                    // print();
+
                     return SizedBox(
                       width: 200,
                       height: 200,
@@ -197,44 +205,69 @@ class _HomeState extends State<Home> {
                     final convict = data[4];
                     final refuse = data[5];
 
-                    final dyslexicName = dyslexic['word'] ?? '';
-                    final dyslexicTranscription =
-                        dyslexic['phonetics'] != null &&
-                            dyslexic['phonetics'].isNotEmpty
-                        ? dyslexic['phonetics'][0]['text'] ?? ''
+                    // Assuming `dyslexic` is your decoded JSON map for a single word
+                    // Dyslexic
+                    final String dyslexicName =
+                        dyslexic['meta']?['id']?.split(':')[0] ?? '';
+                    final String dyslexicTranscription =
+                        (dyslexic['hwi']?['prs'] != null &&
+                            dyslexic['hwi']['prs'].isNotEmpty)
+                        ? dyslexic['hwi']['prs'][0]['mw'] ?? ''
                         : '';
-                    final dyslexicDefinition =
-                        dyslexic['meanings'][0]['definitions'][0]['definition'] ??
-                        '';
+                    final List<String> dyslexicShortDefs = List<String>.from(
+                      dyslexic['shortdef'] ?? [],
+                    );
+                    final String dyslexicDefinition =
+                        dyslexicShortDefs.isNotEmpty
+                        ? dyslexicShortDefs[0]
+                        : '';
 
-                    final ephemeralName = ephemeral['word'] ?? '';
-                    final ephemeralTranscription =
-                        ephemeral['phonetics'] != null &&
-                            ephemeral['phonetics'].isNotEmpty
-                        ? ephemeral['phonetics'][0]['text'] ?? ''
+                    // Ephemeral
+                    final String ephemeralName =
+                        ephemeral['meta']?['id']?.split(':')[0] ?? '';
+                    final String ephemeralTranscription =
+                        (ephemeral['hwi']?['prs'] != null &&
+                            ephemeral['hwi']['prs'].isNotEmpty)
+                        ? ephemeral['hwi']['prs'][0]['mw'] ?? ''
                         : '';
-                    final ephemeralDefinition =
-                        ephemeral['meanings'][0]['definitions'][0]['definition'] ??
-                        '';
-                    final garmentName = garment['word'] ?? '';
-                    final garmentTranscription =
-                        garment['phonetics'] != null &&
-                            garment['phonetics'].isNotEmpty
-                        ? garment['phonetics'][0]['text'] ?? ''
+                    final List<String> ephemeralShortDefs = List<String>.from(
+                      ephemeral['shortdef'] ?? [],
+                    );
+                    final String ephemeralDefinition =
+                        ephemeralShortDefs.isNotEmpty
+                        ? ephemeralShortDefs[0]
                         : '';
-                    final garmentDefinition =
-                        garment['meanings'][0]['definitions'][0]['definition'] ??
-                        '';
 
-                    final expectorantName = expectorant['word'] ?? '';
-                    final expectorantTranscription =
-                        expectorant['phonetics'] != null &&
-                            expectorant['phonetics'].isNotEmpty
-                        ? expectorant['phonetics'][0]['text'] ?? ''
+                    // Garment
+                    final String garmentName =
+                        garment['meta']?['id']?.split(':')[0] ?? '';
+                    final String garmentTranscription =
+                        (garment['hwi']?['prs'] != null &&
+                            garment['hwi']['prs'].isNotEmpty)
+                        ? garment['hwi']['prs'][0]['mw'] ?? ''
                         : '';
-                    final expectorantDefinition =
-                        expectorant['meanings'][0]['definitions'][0]['definition'] ??
-                        '';
+                    final List<String> garmentShortDefs = List<String>.from(
+                      garment['shortdef'] ?? [],
+                    );
+                    final String garmentDefinition = garmentShortDefs.isNotEmpty
+                        ? garmentShortDefs[0]
+                        : '';
+
+                    // Expectorant
+                    final String expectorantName =
+                        expectorant['meta']?['id']?.split(':')[0] ?? '';
+                    final String expectorantTranscription =
+                        (expectorant['hwi']?['prs'] != null &&
+                            expectorant['hwi']['prs'].isNotEmpty)
+                        ? expectorant['hwi']['prs'][0]['mw'] ?? ''
+                        : '';
+                    final List<String> expectorantShortDefs = List<String>.from(
+                      expectorant['shortdef'] ?? [],
+                    );
+                    final String expectorantDefinition =
+                        expectorantShortDefs.isNotEmpty
+                        ? expectorantShortDefs[0]
+                        : '';
 
                     convictName = convict['word'] ?? '';
                     convictTranscription =

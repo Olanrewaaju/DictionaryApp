@@ -1,61 +1,35 @@
 import 'package:flutter/material.dart';
 
 class StarNotifier with ChangeNotifier {
-  // Store all searched words and their meanings
-  final List<Map<String, dynamic>> _searchHistory = [];
+  // Store bookmarked words and their meanings
+  final List<Map<String, String>> _bookMarkedWords = [];
 
-  bool _isclicked = true;
+  List<Map<String, String>> get bookMarkedWords => _bookMarkedWords;
 
-  bool get isclicked => _isclicked;
-  // Store bookmarked words
-  final List<Map<String, dynamic>> _bookmarks = [];
+  /// Toggle a word's bookmark status
+  void toggleBookmark(String word, String meaning) {
+    final existingIndex = _bookMarkedWords.indexWhere(
+      (item) => item['word'] == word,
+    );
 
-  // Getter for search history
-  List<Map<String, dynamic>> get searchHistory =>
-      List.unmodifiable(_searchHistory);
-
-  // Getter for bookmarks
-  List<Map<String, dynamic>> get bookmarks => List.unmodifiable(_bookmarks);
-
-  // Add a new search result (word + meaning)
-  void addSearchResult(String word, dynamic meaning) {
-    // Prevent duplicates; update if it already exists
-    final existing = _searchHistory.indexWhere((item) => item['word'] == word);
-    if (existing != -1) {
-      _searchHistory[existing]['meaning'] = meaning;
+    if (existingIndex >= 0) {
+      // Word already bookmarked → remove it
+      _bookMarkedWords.removeAt(existingIndex);
     } else {
-      _searchHistory.add({'word': word, 'meaning': meaning});
+      // New word → add to bookmarks
+      _bookMarkedWords.add({'word': word, 'meaning': meaning});
     }
+
     notifyListeners();
   }
 
-  // Add or remove a bookmark
-  void toggleBookmark(String word) {
-    // Check if word already bookmarked
-    final existing = _bookmarks.indexWhere((item) => item['word'] == word);
-
-    if (existing != -1) {
-      // Remove bookmark
-      _bookmarks.removeAt(existing);
-    } else {
-      // Find it in search history
-      final found = _searchHistory.firstWhere(
-        (item) => item['word'] == word,
-        orElse: () => <String, dynamic>{}, // ✅ Safe empty map
-      );
-
-      // Add only if found in history
-      if (found.isNotEmpty) {
-        _bookmarks.add(found);
-      }
-    }
-    notifyListeners();
-  }
-
-  // Check if a word is bookmarked
   bool isBookmarked(String word) {
-    _isclicked != _isclicked;
+    return _bookMarkedWords.any((item) => item['word'] == word);
+  }
+
+  /// Optional: clear all bookmarks
+  void clearBookmarks() {
+    _bookMarkedWords.clear();
     notifyListeners();
-    return _bookmarks.any((item) => item['word'] == word);
   }
 }

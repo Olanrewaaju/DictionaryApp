@@ -10,21 +10,22 @@ class Starred extends StatefulWidget {
 }
 
 class _StarredState extends State<Starred> {
+  int lengths = 0;
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<StarNotifier>();
-    final bookmarks = provider.bookmarks;
+
     return Scaffold(
       body: ListView.builder(
-        itemCount: bookmarks.length,
+        // itemCount: lengths.length,
         itemBuilder: (context, index) {
-          final item = bookmarks[index];
+          // final item = lengths[index];
           return ListTile(
-            title: Text(item['word']),
-            subtitle: Text(item['meaning']),
+            // title: Text(item['word']),
+            // subtitle: Text(item['meaning']),
             trailing: IconButton(
               icon: const Icon(Icons.delete),
-              onPressed: () => provider.toggleBookmark(item['word']),
+              onPressed: () {},
             ),
           );
         },

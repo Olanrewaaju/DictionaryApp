@@ -18,7 +18,7 @@ class _FullDetailState extends State<FullDetail> {
   late Future _value;
   late String searchedWord;
   String navWord = '';
-
+  String word = '';
   @override
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _FullDetailState extends State<FullDetail> {
         if (navWord.isEmpty) {
           searchedWord = context.read<Wordvalue>().word;
         } else {
-          navWord == searchedWord;
+          searchedWord == navWord;
         }
 
         _value = fetchWordDetails();
@@ -57,33 +57,33 @@ class _FullDetailState extends State<FullDetail> {
 
   @override
   Widget build(BuildContext context) {
-    // final searchedWord = context.read<Wordvalue>().word;
-    final starData = context.watch<StarNotifier>().isBookmarked(searchedWord);
+    final starNotifier = context.watch<StarNotifier>();
+    final isBookmarked = starNotifier.isBookmarked(searchedWord);
 
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Icon(Icons.reply, size: 26, color: Colors.grey),
-            SizedBox(width: 30),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(Icons.reply, size: 26, color: Colors.grey),
+              SizedBox(width: 30),
 
-            IconButton(
-              onPressed: () {
-                context.read<StarNotifier>().toggleBookmark(searchedWord);
-              },
+              IconButton(
+                onPressed: () {},
 
-              icon: Icon(
-                color: starData ? Colors.amberAccent : Colors.grey,
-                size: 26,
-                Icons.star,
+                icon: Icon(
+                  color: isBookmarked ? Colors.amber : Colors.grey,
+                  size: 26,
+                  Icons.star,
+                ),
               ),
-            ),
-            SizedBox(width: 30),
-            Icon(Icons.more_horiz, size: 26, color: Colors.grey),
-          ],
-        ),
+              SizedBox(width: 30),
+              Icon(Icons.more_horiz, size: 26, color: Colors.grey),
+            ],
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
