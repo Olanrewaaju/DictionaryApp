@@ -1,35 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class StarNotifier with ChangeNotifier {
-  // Store bookmarked words and their meanings
-  final List<Map<String, String>> _bookMarkedWords = [];
+class DictionaryStateProvider with ChangeNotifier {
+  // Keys for local storage
+  static const String _historyKey = 'search_history';
+  static const String _bookmarkKey = 'bookmarks';
 
-  List<Map<String, String>> get bookMarkedWords => _bookMarkedWords;
+  List<String> _searchHistory = [];
+  List<String> _bookmarks = [];
 
-  /// Toggle a word's bookmark status
-  void toggleBookmark(String word, String meaning) {
-    final existingIndex = _bookMarkedWords.indexWhere(
-      (item) => item['word'] == word,
-    );
+  // Public getters to access the lists
+  List<String> get searchHistory => _searchHistory;
+  List<String> get bookmarks => _bookmarks;
 
-    if (existingIndex >= 0) {
-      // Word already bookmarked → remove it
-      _bookMarkedWords.removeAt(existingIndex);
-    } else {
-      // New word → add to bookmarks
-      _bookMarkedWords.add({'word': word, 'meaning': meaning});
+  DictionaryStateProvider() {
+    // Load both lists when the app starts
+    _loadHistory();
+    _loadBookmarks();
+  }
+
+  // --- Search History Logic ---
+
+  void addToHistory(String word) {
+    // Add to the beginning of the list & prevent duplicates
+    if (_searchHistory.contains(word)) {
+      _searchHistory.remove(word);
     }
-
+    _searchHistory.insert(0, word); // Newest items first
+    _saveHistory();
     notifyListeners();
   }
+
+  Future<void> _loadHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    _searchHistory = prefs.getStringList(_historyKey) ?? [];
+    notifyListeners();
+  }
+
+  Future<void> _saveHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(_historyKey, _searchHistory);
+  }
+
+  // --- Bookmark Logic ---
 
   bool isBookmarked(String word) {
-    return _bookMarkedWords.any((item) => item['word'] == word);
+    return _bookmarks.contains(word);
   }
 
-  /// Optional: clear all bookmarks
-  void clearBookmarks() {
-    _bookMarkedWords.clear();
+  void toggleBookmark(String word) {
+    if (isBookmarked(word)) {
+      _bookmarks.remove(word);
+    } else {
+      _bookmarks.add(word);
+    }
+    _saveBookmarks();
     notifyListeners();
+  }
+
+  Future<void> _loadBookmarks() async {
+    final prefs = await SharedPreferences.getInstance();
+    _bookmarks = prefs.getStringList(_bookmarkKey) ?? [];
+    notifyListeners();
+  }
+
+  Future<void> _saveBookmarks() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList(_bookmarkKey, _bookmarks);
   }
 }

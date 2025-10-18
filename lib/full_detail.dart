@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/wordvalue.dart';
 import 'package:http/http.dart' as http;
-import 'apps_providers/wordvalue.dart';
-import 'apps_providers/star_notifier.dart';
+import 'apps_providers/star_Notifier.dart';
 
 class FullDetail extends StatefulWidget {
   String navWord;
@@ -57,8 +56,9 @@ class _FullDetailState extends State<FullDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final starNotifier = context.watch<StarNotifier>();
-    final isBookmarked = starNotifier.isBookmarked(searchedWord);
+    final isBookmarked = context.watch<DictionaryStateProvider>().isBookmarked(
+      searchedWord,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -71,7 +71,11 @@ class _FullDetailState extends State<FullDetail> {
               SizedBox(width: 30),
 
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<DictionaryStateProvider>().toggleBookmark(
+                    searchedWord,
+                  );
+                },
 
                 icon: Icon(
                   color: isBookmarked ? Colors.amber : Colors.grey,

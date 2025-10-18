@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'fieldfortext.dart';
 import 'full_detail.dart';
 import 'apps_providers/wordvalue.dart';
+import 'apps_providers/star_Notifier.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -32,6 +33,7 @@ class _SearchState extends State<Search> {
 
   void navigateToResult() {
     context.read<Wordvalue>().wordChanger(searchString.text);
+
     final query = searchString.text.trim();
     if (query.isNotEmpty) {
       Navigator.push(
@@ -39,6 +41,10 @@ class _SearchState extends State<Search> {
         MaterialPageRoute(builder: (context) => FullDetail(navWord: query)),
       );
     }
+    Provider.of<DictionaryStateProvider>(
+      context,
+      listen: false,
+    ).addToHistory(searchString.text);
   }
 
   @override
@@ -61,7 +67,7 @@ class _SearchState extends State<Search> {
               controller: searchString,
               autoFocus: true,
               focusNode: _focusNode,
-              onSubmitted: navigateToResult, // 👈 press enter → navigates
+              onSubmitted: navigateToResult,
             ),
           ],
         ),
