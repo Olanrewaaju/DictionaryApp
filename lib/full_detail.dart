@@ -78,9 +78,11 @@ class _FullDetailState extends State<FullDetail> {
                 },
 
                 icon: Icon(
-                  color: isBookmarked ? Colors.amber : Colors.grey,
+                  color: isBookmarked
+                      ? Color.fromARGB(255, 10, 132, 255)
+                      : Colors.grey,
                   size: 26,
-                  Icons.star,
+                  Icons.bookmark,
                 ),
               ),
               SizedBox(width: 30),
@@ -107,7 +109,6 @@ class _FullDetailState extends State<FullDetail> {
               return const Center(child: Text("No data found"));
             }
 
-            // ✅ Handle cases where the API returns string suggestions
             if (wordData is List &&
                 wordData.isNotEmpty &&
                 wordData[0] is String) {
@@ -352,6 +353,8 @@ class _FullDetailState extends State<FullDetail> {
                 ),
                 Divider(color: Colors.black26, thickness: 0.88),
                 Text(stems.join(', ')),
+
+                SizedBox(height: 30),
               ],
             );
           },

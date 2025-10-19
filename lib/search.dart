@@ -50,17 +50,12 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            const SizedBox(height: 90),
+            // const SizedBox(height: 90),
             Fieldfortext(
               hintText: 'Search word',
               labelText: '',

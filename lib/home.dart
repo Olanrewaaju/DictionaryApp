@@ -8,6 +8,7 @@ import 'apps_providers/usernamenotif.dart';
 import 'word_screen.dart';
 import 'api_container.dart';
 import 'hom_container.dart';
+import 'apps_providers/theme_notifier.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -132,19 +133,34 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final user = context.watch<Usernamenotif>().username;
+    final toggles = context.watch<ThemeNotifier>().isDarkMode;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 87,
         automaticallyImplyLeading: false,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Hello $user', style: TextStyle()),
-            SizedBox(height: 8),
-            Text(
-              'Welcome back',
-              style: TextStyle(fontSize: 14, color: Colors.black45),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hello $user',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Welcome back',
+                  style: TextStyle(fontSize: 14, color: Colors.black45),
+                ),
+              ],
+            ),
+            IconButton(
+              onPressed: () {
+                context.read<ThemeNotifier>().toggleTheme();
+              },
+              icon: toggles ? Icon(Icons.dark_mode) : Icon(Icons.light_mode),
             ),
           ],
         ),

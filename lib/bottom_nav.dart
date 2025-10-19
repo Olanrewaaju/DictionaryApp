@@ -47,6 +47,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         type: BottomNavigationBarType.fixed,
         selectedLabelStyle: const TextStyle(
           fontFamily: 'Manrope',
+          fontSize: 12,
           fontWeight: FontWeight.w400,
         ),
         unselectedLabelStyle: const TextStyle(fontSize: 10),
@@ -60,8 +61,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star, size: 32),
-            label: 'Starred',
+            icon: Icon(Icons.bookmark, size: 32),
+            label: 'Bookmarked',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

@@ -1,3 +1,4 @@
+import 'package:dictionary_app/apps_providers/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/usernamenotif.dart';
@@ -12,6 +13,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => Usernamenotif()),
         ChangeNotifierProvider(create: (_) => Wordvalue()),
         ChangeNotifierProvider(create: (_) => DictionaryStateProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeNotifier()),
       ],
       child: const MyApp(),
     ),
@@ -24,26 +26,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = context.watch<ThemeNotifier>();
     return MaterialApp(
       title: 'Flutter Demo',
 
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            shape: WidgetStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(4),
-              ),
-            ),
-            backgroundColor: WidgetStatePropertyAll(
-              const Color.fromARGB(255, 10, 132, 255),
-            ),
-          ),
-        ),
-        fontFamily: 'Manrope',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: themeNotifier.currentTheme,
       home: const BottomNavBar(),
     );
   }

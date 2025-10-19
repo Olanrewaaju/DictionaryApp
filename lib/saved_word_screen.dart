@@ -12,7 +12,10 @@ class SavedWordsScreen extends StatelessWidget {
       length: 2, // We have two tabs: History and Bookmarks
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('My Library'),
+          title: const Text(
+            'My Library',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
           bottom: const TabBar(
             tabs: [
               Tab(icon: Icon(Icons.history), text: 'History'),
