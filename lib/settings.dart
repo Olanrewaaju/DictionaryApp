@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dictionary_app/account.dart';
 import 'package:dictionary_app/saved_word_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,12 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isOn = false;
   bool isVal = false;
+  bool isTheme = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Settings & Privacy',
           style: TextStyle(fontWeight: FontWeight.w500),
@@ -42,6 +45,16 @@ class _SettingsState extends State<Settings> {
               Divider(color: Colors.black26, thickness: 0.88),
               SizedBox(height: 24),
               ListTile(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Account();
+                      },
+                    ),
+                  );
+                },
                 leading: Icon(
                   Icons.person_outline_rounded,
                   color: Colors.black54,
@@ -106,6 +119,30 @@ class _SettingsState extends State<Settings> {
               ),
               SizedBox(height: 12),
               ListTile(
+                leading: Icon(Icons.light_mode, color: Colors.black54),
+                contentPadding: EdgeInsets.zero,
+
+                title: Text(
+                  'Theme',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                trailing: Transform.scale(
+                  scale: 0.76,
+                  child: Switch(
+                    padding: EdgeInsets.zero,
+
+                    materialTapTargetSize: MaterialTapTargetSize.padded,
+                    value: isTheme,
+                    onChanged: (value) {
+                      setState(() {
+                        isTheme = value;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              SizedBox(height: 12),
+              ListTile(
                 contentPadding: EdgeInsets.zero,
                 onTap: () {
                   Navigator.push(
@@ -130,7 +167,7 @@ class _SettingsState extends State<Settings> {
               ),
               SizedBox(height: 90),
               Text(
-                "General",
+                "Feedback",
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.black54,
@@ -154,6 +191,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 trailing: Icon(Icons.arrow_forward_ios_rounded, size: 18),
               ),
+
               SizedBox(height: 12),
               ListTile(
                 contentPadding: EdgeInsets.zero,

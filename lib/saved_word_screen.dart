@@ -13,7 +13,7 @@ class SavedWordsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'My Library',
+            'Bookmarks',
             style: TextStyle(fontWeight: FontWeight.w500),
           ),
           bottom: const TabBar(

@@ -14,6 +14,7 @@ class ThemeNotifier extends ChangeNotifier {
     scaffoldBackgroundColor: Colors.white,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
+        textStyle: WidgetStatePropertyAll(TextStyle(color: Colors.white)),
         shape: WidgetStateProperty.all(
           RoundedRectangleBorder(
             borderRadius: BorderRadiusGeometry.circular(4),
