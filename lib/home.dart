@@ -208,14 +208,19 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(height: 80),
-              Text('Previously Searched words', style: TextStyle(fontSize: 12)),
+              Text('Words for everyday use', style: TextStyle(fontSize: 12)),
               SizedBox(height: 24),
               FutureBuilder(
                 future: value,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator(
-                      constraints: BoxConstraints.expand(height: 30, width: 30),
+                    return Center(
+                      child: CircularProgressIndicator(
+                        constraints: BoxConstraints.expand(
+                          height: 30,
+                          width: 30,
+                        ),
+                      ),
                     );
                   }
                   if (snapshot.hasError) {

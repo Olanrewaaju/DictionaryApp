@@ -1,16 +1,25 @@
 # dictionary_app
+The Dictionary App allows users to search for word meanings, pronunciation, part of speech, and example sentences. It’s built using Flutter and integrates with a free dictionary API to fetch real-time definitions.
 
-A new Flutter project.
+## Features
+- Search for English words
+- Listen to pronunciation
+- View multiple definitions and examples
+- Save/bookmark favorite words (using SharedPreferences)
+- Light & Dark Mode toggle (using Provider)
+- Smooth navigation between pages
 
-## Getting Started
+## 🛠️ Built With
 
-This project is a starting point for a Flutter application.
+- **Framework:** Flutter  
+- **Language:** Dart  
+- **API:** [Free Dictionary API](https://dictionaryapi.dev/)  
+- **State Management:** Provider  
+- **Local Storage:** Shared Preferences  
 
-A few resources to get you started if this is your first Flutter project:
+## 👨‍💻 Author
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Olanrewaju Andre — Flutter & UI/UX Designer
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-LinkedIn: Olanrewaju Andre
+- GitHub:  https://github.com/Olanrewaaju

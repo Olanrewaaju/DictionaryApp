@@ -70,6 +70,7 @@ class SavedWordsScreen extends StatelessWidget {
           title: Text(word),
           trailing: isBookmarkList
               ? IconButton(
+                  padding: EdgeInsets.zero,
                   icon: const Icon(Icons.bookmark, color: Colors.blue),
                   onPressed: () {
                     // Toggling here will remove it

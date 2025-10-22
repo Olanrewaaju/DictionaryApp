@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'apps_providers/theme_notifier.dart';
 
 class HomContainer extends StatefulWidget {
   final String name;

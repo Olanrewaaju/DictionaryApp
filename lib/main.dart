@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/usernamenotif.dart';
 import 'apps_providers/wordvalue.dart';
-import 'bottom_nav.dart';
 import 'package:dictionary_app/apps_providers/star_Notifier.dart';
 
 void main() {
