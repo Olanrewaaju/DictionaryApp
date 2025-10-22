@@ -17,7 +17,7 @@ class _FullDetailState extends State<FullDetail> {
   late Future _value;
   late String searchedWord;
   String navWord = '';
-  String word = '';
+  late String word;
   @override
   void initState() {
     super.initState();
@@ -26,8 +26,9 @@ class _FullDetailState extends State<FullDetail> {
       setState(() {
         if (navWord.isEmpty) {
           searchedWord = context.read<Wordvalue>().word;
-        } else {
-          searchedWord == navWord;
+        } else if (navWord.isNotEmpty && searchedWord.isEmpty ||
+            searchedWord.isNotEmpty) {
+          searchedWord = navWord;
         }
 
         _value = fetchWordDetails();
@@ -116,9 +117,11 @@ class _FullDetailState extends State<FullDetail> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Did you mean:",
                       style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -254,7 +257,13 @@ class _FullDetailState extends State<FullDetail> {
                       ),
                     ),
                     SizedBox(width: 10),
-                    Text(' ($partOfSpeech)', style: TextStyle(fontSize: 14)),
+                    Text(
+                      ' ($partOfSpeech)',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontSize: 14,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 2),
@@ -274,19 +283,24 @@ class _FullDetailState extends State<FullDetail> {
                 // ),
                 const SizedBox(height: 24),
 
-                const Text(
+                Text(
                   "DEFINITIONS",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black87,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Divider(color: Colors.black26, thickness: 0.88),
+                Divider(color: Theme.of(context).dividerColor, thickness: 0.88),
                 const SizedBox(height: 8),
 
                 if (cleanDefinitions.isEmpty)
-                  const Text("No definitions available."),
+                  Text(
+                    "No definitions available.",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
                 for (var def in cleanDefinitions)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 24),
@@ -298,15 +312,18 @@ class _FullDetailState extends State<FullDetail> {
 
                 if (examples.isNotEmpty) ...[
                   const SizedBox(height: 30),
-                  const Text(
+                  Text(
                     "EXAMPLES",
                     style: TextStyle(
                       fontSize: 16,
-                      color: Colors.black87,
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Divider(color: Colors.black26, thickness: 0.88),
+                  Divider(
+                    color: Theme.of(context).dividerColor,
+                    thickness: 0.88,
+                  ),
 
                   const SizedBox(height: 8),
                   for (var ex in examples)
@@ -314,30 +331,32 @@ class _FullDetailState extends State<FullDetail> {
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: Text(
                         "• $ex",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontStyle: FontStyle.italic,
                           fontSize: 16,
-                          color: Colors.black87,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
                 ],
 
                 const SizedBox(height: 30),
-                const Text(
+                Text(
                   "ETYMOLOGY",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black87,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Divider(color: Colors.black26, thickness: 0.88),
+                Divider(color: Theme.of(context).dividerColor, thickness: 0.88),
 
                 const SizedBox(height: 6),
                 Text(
                   etymology,
-                  style: const TextStyle(
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+
                     fontSize: 15,
                     fontStyle: FontStyle.italic,
                   ),
@@ -347,11 +366,11 @@ class _FullDetailState extends State<FullDetail> {
                   "VARIANT WORDS",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black87,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Divider(color: Colors.black26, thickness: 0.88),
+                Divider(color: Theme.of(context).dividerColor, thickness: 0.88),
                 Text(stems.join(', ')),
 
                 SizedBox(height: 30),

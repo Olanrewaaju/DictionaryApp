@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'apps_providers/theme_notifier.dart';
 
 class HomContainer extends StatefulWidget {
   final String name;
@@ -24,20 +26,20 @@ class _HomContainerState extends State<HomContainer> {
       alignment: Alignment.center,
       padding: EdgeInsets.all(16),
       width: 300,
-      // height: 300,
+      height: 220,
       decoration: BoxDecoration(
-        border: BoxBorder.all(color: const Color.fromARGB(31, 150, 150, 150)),
+        // border: BoxBorder.all(color: const Color.fromARGB(31, 150, 150, 150)),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(255, 222, 222, 222),
-            spreadRadius: 3,
-            blurRadius: 400,
-            // blurStyle: BlurStyle.outer,
-          ),
-        ],
 
-        color: const Color.fromARGB(255, 250, 250, 250),
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: const Color.fromARGB(255, 222, 222, 222),
+        //     spreadRadius: 3,
+        //     blurRadius: 400,
+        //     // blurStyle: BlurStyle.outer,
+        //   ),
+        // ],
+        color: Theme.of(context).colorScheme.surface,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

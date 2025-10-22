@@ -1,8 +1,8 @@
-import 'dart:math';
-
 import 'package:dictionary_app/account.dart';
 import 'package:dictionary_app/saved_word_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'apps_providers/theme_notifier.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -38,11 +38,11 @@ class _SettingsState extends State<Settings> {
                 "General",
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.black54,
+                  // color: Colors.black54,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Divider(color: Colors.black26, thickness: 0.88),
+              Divider(color: Theme.of(context).dividerColor, thickness: 0.88),
               SizedBox(height: 24),
               ListTile(
                 onTap: () {
@@ -57,7 +57,7 @@ class _SettingsState extends State<Settings> {
                 },
                 leading: Icon(
                   Icons.person_outline_rounded,
-                  color: Colors.black54,
+                  // color: Colors.black54,
                 ),
                 contentPadding: EdgeInsets.zero,
 
@@ -71,7 +71,7 @@ class _SettingsState extends State<Settings> {
               ListTile(
                 leading: Icon(
                   Icons.notifications_none_rounded,
-                  color: Colors.black54,
+                  // color: Colors.black54,
                 ),
                 contentPadding: EdgeInsets.zero,
 
@@ -95,7 +95,10 @@ class _SettingsState extends State<Settings> {
               ),
               SizedBox(height: 12),
               ListTile(
-                leading: Icon(Icons.wifi, color: Colors.black54),
+                leading: Icon(
+                  Icons.wifi,
+                  // color: Colors.black54
+                ),
                 contentPadding: EdgeInsets.zero,
 
                 title: Text(
@@ -119,7 +122,10 @@ class _SettingsState extends State<Settings> {
               ),
               SizedBox(height: 12),
               ListTile(
-                leading: Icon(Icons.light_mode, color: Colors.black54),
+                leading: Icon(
+                  Icons.light_mode,
+                  //  color: Colors.black54
+                ),
                 contentPadding: EdgeInsets.zero,
 
                 title: Text(
@@ -132,8 +138,9 @@ class _SettingsState extends State<Settings> {
                     padding: EdgeInsets.zero,
 
                     materialTapTargetSize: MaterialTapTargetSize.padded,
-                    value: isTheme,
+                    value: context.watch<ThemeNotifier>().isDarkMode,
                     onChanged: (value) {
+                      context.read<ThemeNotifier>().toggleTheme();
                       setState(() {
                         isTheme = value;
                       });
@@ -149,14 +156,14 @@ class _SettingsState extends State<Settings> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return SavedWordsScreen();
+                        return SavedWordsScreen(backButt: true);
                       },
                     ),
                   );
                 },
                 leading: Icon(
                   Icons.bookmark_outline_rounded,
-                  color: Colors.black54,
+                  // color: Colors.black54,
                 ),
 
                 title: Text(
@@ -170,11 +177,11 @@ class _SettingsState extends State<Settings> {
                 "Feedback",
                 style: TextStyle(
                   fontSize: 14,
-                  color: Colors.black54,
+                  // color: Colors.black54,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Divider(color: Colors.black26, thickness: 0.88),
+              Divider(color: Theme.of(context).dividerColor, thickness: 0.88),
 
               SizedBox(height: 24),
               ListTile(
@@ -182,7 +189,7 @@ class _SettingsState extends State<Settings> {
 
                 leading: Icon(
                   Icons.error_outline_outlined,
-                  color: Colors.black54,
+                  // color: Colors.black54,
                 ),
 
                 title: Text(
@@ -200,13 +207,15 @@ class _SettingsState extends State<Settings> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return SavedWordsScreen();
+                        return SavedWordsScreen(backButt: true);
                       },
                     ),
                   );
                 },
-                leading: Icon(Icons.send_outlined, color: Colors.black54),
-
+                leading: Icon(
+                  Icons.send_outlined,
+                  // color: Colors.black54),
+                ),
                 title: Text(
                   'Send Feedback',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),

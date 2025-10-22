@@ -25,16 +25,16 @@ class _ApiContainerState extends State<ApiContainer> {
       decoration: BoxDecoration(
         border: BoxBorder.all(color: const Color.fromARGB(31, 150, 150, 150)),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: const Color.fromARGB(255, 222, 222, 222),
-            spreadRadius: 3,
-            blurRadius: 400,
-            // blurStyle: BlurStyle.outer,
-          ),
-        ],
 
-        color: const Color.fromARGB(255, 250, 250, 250),
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: const Color.fromARGB(255, 222, 222, 222),
+        //     spreadRadius: 3,
+        //     blurRadius: 400,
+        //     // blurStyle: BlurStyle.outer,
+        //   ),
+        // ],
+        color: Theme.of(context).colorScheme.surface,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class _ApiContainerState extends State<ApiContainer> {
             ),
           ),
           SizedBox(height: 12),
-          Divider(color: Colors.black26),
+          Divider(color: Theme.of(context).dividerColor),
           SizedBox(height: 12),
 
           Text(

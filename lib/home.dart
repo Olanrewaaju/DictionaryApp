@@ -18,6 +18,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<String> values = [
+    'Voluminous',
+    'Silhouette',
+    'colleague',
+    'Expectorant',
+  ];
   String dyslexicName = '';
   String dyslexicTranscription = '';
   String dyslexicDDefinition = '';
@@ -147,12 +153,18 @@ class _HomeState extends State<Home> {
               children: [
                 Text(
                   'Hello $user',
-                  style: TextStyle(fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
                 SizedBox(height: 8),
                 Text(
                   'Welcome back',
-                  style: TextStyle(fontSize: 14, color: Colors.black45),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                 ),
               ],
             ),
@@ -176,7 +188,9 @@ class _HomeState extends State<Home> {
               SizedBox(height: 60),
               Text(
                 'The word of the day :',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
               ),
               TextButton(
                 style: ButtonStyle(
@@ -186,7 +200,8 @@ class _HomeState extends State<Home> {
                 child: Text(
                   name,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Theme.of(context).colorScheme.onSurface,
+
                     fontSize: 40,
                     fontWeight: FontWeight.w600,
                   ),
@@ -321,28 +336,85 @@ class _HomeState extends State<Home> {
                           // padding: EdgeInsets.all(8),
                           child: Row(
                             children: [
-                              ApiContainer(
-                                name: dyslexicName,
-                                transcription: dyslexicTranscription,
-                                definition: dyslexicDefinition,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return FullDetail(navWord: values[0]);
+                                      },
+                                    ),
+                                  );
+                                  context.read<Wordvalue>().wordChanger(
+                                    values[0],
+                                  );
+                                },
+
+                                child: ApiContainer(
+                                  name: dyslexicName,
+                                  transcription: dyslexicTranscription,
+                                  definition: dyslexicDefinition,
+                                ),
                               ),
                               SizedBox(width: 12),
-                              ApiContainer(
-                                name: ephemeralName,
-                                transcription: ephemeralTranscription,
-                                definition: ephemeralDefinition,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return FullDetail(navWord: values[0]);
+                                      },
+                                    ),
+                                  );
+                                  context.read<Wordvalue>().wordChanger(
+                                    values[1],
+                                  );
+                                },
+                                child: ApiContainer(
+                                  name: ephemeralName,
+                                  transcription: ephemeralTranscription,
+                                  definition: ephemeralDefinition,
+                                ),
                               ),
                               SizedBox(width: 12),
-                              ApiContainer(
-                                name: garmentName,
-                                transcription: garmentTranscription,
-                                definition: garmentDefinition,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return FullDetail(navWord: values[0]);
+                                      },
+                                    ),
+                                  );
+                                  context.read<Wordvalue>().wordChanger(
+                                    values[2],
+                                  );
+                                },
+                                child: ApiContainer(
+                                  name: garmentName,
+                                  transcription: garmentTranscription,
+                                  definition: garmentDefinition,
+                                ),
                               ),
                               SizedBox(width: 12),
-                              ApiContainer(
-                                name: expectorantName,
-                                transcription: expectorantTranscription,
-                                definition: expectorantDefinition,
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return FullDetail(navWord: values[0]);
+                                      },
+                                    ),
+                                  );
+                                  context.read<Wordvalue>().wordChanger(
+                                    values[3],
+                                  );
+                                },
+                                child: ApiContainer(
+                                  name: expectorantName,
+                                  transcription: expectorantTranscription,
+                                  definition: expectorantDefinition,
+                                ),
                               ),
                             ],
                           ),
@@ -356,8 +428,14 @@ class _HomeState extends State<Home> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 'Common Homonyms',
+
                                 textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                  fontSize: 12,
+                                ),
                               ),
                             ),
                           ],

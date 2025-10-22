@@ -1,10 +1,12 @@
+import 'package:dictionary_app/apps_providers/wordvalue.dart';
 import 'package:dictionary_app/full_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/star_Notifier.dart';
 
 class SavedWordsScreen extends StatelessWidget {
-  const SavedWordsScreen({super.key});
+  final bool backButt;
+  const SavedWordsScreen({super.key, this.backButt = true});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +14,7 @@ class SavedWordsScreen extends StatelessWidget {
       length: 2, // We have two tabs: History and Bookmarks
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: backButt,
           title: const Text(
             'Bookmarks',
             style: TextStyle(fontWeight: FontWeight.w500),
@@ -84,6 +87,7 @@ class SavedWordsScreen extends StatelessWidget {
                 builder: (context) => FullDetail(navWord: word),
               ),
             );
+            context.read<Wordvalue>().wordChanger(word);
           },
         );
       },

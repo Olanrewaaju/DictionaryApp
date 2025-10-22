@@ -12,12 +12,13 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
+  bool valid = true;
   int selectedIndex = 0;
 
   final List<Widget> pages = [
     const Home(),
     const Search(),
-    const SavedWordsScreen(),
+    const SavedWordsScreen(backButt: false),
     const Settings(),
   ];
 
@@ -51,9 +52,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           fontWeight: FontWeight.w400,
         ),
         unselectedLabelStyle: const TextStyle(fontSize: 10),
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 32),
+            icon: mounted
+                ? Icon(Icons.home, size: 32)
+                : Icon(Icons.home_outlined),
             label: 'Home',
           ),
           BottomNavigationBarItem(

@@ -1,4 +1,5 @@
 import 'package:dictionary_app/apps_providers/theme_notifier.dart';
+import 'package:dictionary_app/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'apps_providers/usernamenotif.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
 
       theme: themeNotifier.currentTheme,
-      home: const BottomNavBar(),
+      home: const Login(),
     );
   }
 }
