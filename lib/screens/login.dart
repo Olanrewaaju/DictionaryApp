@@ -60,17 +60,18 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Spacer(),
-              Fieldfortext(
-                controller: password,
-                hintText: 'Enter your Email',
-                labelText: 'Email',
-              ),
+              // Fieldfortext(
+              //   controller: password,
+              //   hintText: 'Enter your Email',
+              //   labelText: 'Email',
+              // ),
               SizedBox(height: 50),
               Fieldfortext(
                 controller: user,
                 hintText: 'Enter your username',
                 labelText: 'Username',
               ),
+              SizedBox(height: 10),
               SizedBox(
                 child: errorVal
                     ? Text(

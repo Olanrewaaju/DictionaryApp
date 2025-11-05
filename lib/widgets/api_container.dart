@@ -20,7 +20,7 @@ class _ApiContainerState extends State<ApiContainer> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      width: 200,
+      width: 220,
       height: 160,
       decoration: BoxDecoration(
         border: BoxBorder.all(color: const Color.fromARGB(31, 150, 150, 150)),
@@ -41,7 +41,7 @@ class _ApiContainerState extends State<ApiContainer> {
         children: [
           Text(
             widget.name,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
           ),
           Text(
             widget.transcription,

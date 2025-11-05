@@ -55,20 +55,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items: [
           BottomNavigationBarItem(
             icon: mounted
-                ? Icon(Icons.home, size: 32)
+                ? Icon(Icons.home, size: 28)
                 : Icon(Icons.home_outlined),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 32),
+            icon: Icon(Icons.search, size: 28),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark, size: 32),
+            icon: Icon(Icons.bookmark, size: 28),
             label: 'Bookmarked',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.settings, size: 28),
             label: 'Settings',
           ),
         ],

@@ -26,6 +26,8 @@ class _HomContainerState extends State<HomContainer> {
       width: 300,
       height: 220,
       decoration: BoxDecoration(
+        border: BoxBorder.all(color: const Color.fromARGB(31, 150, 150, 150)),
+
         // border: BoxBorder.all(color: const Color.fromARGB(31, 150, 150, 150)),
         borderRadius: BorderRadius.circular(12),
 

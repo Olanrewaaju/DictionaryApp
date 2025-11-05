@@ -246,25 +246,28 @@ class _FullDetailState extends State<FullDetail> {
             return ListView(
               padding: const EdgeInsets.only(top: 40),
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      word,
-                      style: const TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.w600,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        word,
+                        style: const TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      ' ($partOfSpeech)',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontSize: 14,
+                      SizedBox(width: 10),
+                      Text(
+                        ' ($partOfSpeech)',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontSize: 14,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 2),
                 Text(

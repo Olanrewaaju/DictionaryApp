@@ -18,12 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<String> values = [
-    'Voluminous',
-    'Silhouette',
-    'colleague',
-    'Expectorant',
-  ];
+  List<String> values = ['Voluminous', 'soiree', 'colleague', 'Expectorant'];
   String dyslexicName = '';
   String dyslexicTranscription = '';
   String dyslexicDDefinition = '';
@@ -64,7 +59,7 @@ class _HomeState extends State<Home> {
       'https://www.dictionaryapi.com/api/v3/references/collegiate/json/voluminous?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
     final ephemeralUrl = Uri.parse(
-      'https://www.dictionaryapi.com/api/v3/references/collegiate/json/silhouette?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
+      'https://www.dictionaryapi.com/api/v3/references/collegiate/json/soiree?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
     );
     final garmentUrl = Uri.parse(
       'https://www.dictionaryapi.com/api/v3/references/collegiate/json/colleague?key=2afc2bda-51f6-4b3c-b99a-a5997a238778',
@@ -154,6 +149,7 @@ class _HomeState extends State<Home> {
                 Text(
                   'Hello $user',
                   style: TextStyle(
+                    fontSize: 16,
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
@@ -162,7 +158,7 @@ class _HomeState extends State<Home> {
                   'Welcome back',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 13,
+                    fontSize: 12,
                     color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
