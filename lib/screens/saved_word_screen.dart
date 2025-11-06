@@ -1,8 +1,8 @@
-import 'package:dictionary_app/apps_providers/wordvalue.dart';
-import 'package:dictionary_app/full_detail.dart';
+import 'package:dictionary_app/state_management/wordvalue.dart';
+import 'package:dictionary_app/screens/full_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'apps_providers/star_Notifier.dart';
+import 'package:dictionary_app/state_management/star_notifier.dart';
 
 class SavedWordsScreen extends StatelessWidget {
   final bool backButt;

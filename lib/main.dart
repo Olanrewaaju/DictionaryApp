@@ -1,12 +1,16 @@
-import 'package:dictionary_app/apps_providers/theme_notifier.dart';
-import 'package:dictionary_app/login.dart';
+import 'package:dictionary_app/state_management/theme_notifier.dart';
+import 'package:dictionary_app/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'apps_providers/usernamenotif.dart';
-import 'apps_providers/wordvalue.dart';
-import 'package:dictionary_app/apps_providers/star_Notifier.dart';
+import 'state_management/usernamenotif.dart';
+import 'state_management/wordvalue.dart';
+import 'state_management/star_notifier.dart';
+import 'database/sql_theme.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await SqlTheme.instance ;
+
   runApp(
     MultiProvider(
       providers: [

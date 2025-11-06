@@ -1,14 +1,14 @@
-import 'package:dictionary_app/apps_providers/wordvalue.dart';
-import 'package:dictionary_app/full_detail.dart';
+import 'package:dictionary_app/state_management/wordvalue.dart';
+import 'package:dictionary_app/screens/full_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'apps_providers/usernamenotif.dart';
+import '../state_management/usernamenotif.dart';
 import 'word_screen.dart';
-import 'api_container.dart';
-import 'hom_container.dart';
-import 'apps_providers/theme_notifier.dart';
+import '../widgets/api_container.dart';
+import '../widgets/hom_container.dart';
+import '../state_management/theme_notifier.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

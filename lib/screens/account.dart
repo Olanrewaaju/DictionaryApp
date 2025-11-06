@@ -1,8 +1,8 @@
-import 'package:dictionary_app/extra.dart';
-import 'package:dictionary_app/fieldfortext.dart';
+import 'package:dictionary_app/screens/extra.dart';
+import 'package:dictionary_app/widgets/fieldfortext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'apps_providers/usernamenotif.dart';
+import '../state_management/usernamenotif.dart';
 
 class Account extends StatefulWidget {
   const Account({super.key});

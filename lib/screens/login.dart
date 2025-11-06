@@ -1,9 +1,9 @@
-import 'package:dictionary_app/apps_providers/wordvalue.dart';
+import 'package:dictionary_app/state_management/wordvalue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'fieldfortext.dart';
-import 'apps_providers/usernamenotif.dart';
-import 'bottom_nav.dart';
+import '../widgets/fieldfortext.dart';
+import '../state_management/usernamenotif.dart';
+import '../utilities/bottom_nav.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

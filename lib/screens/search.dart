@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'fieldfortext.dart';
+import '../widgets/fieldfortext.dart';
 import 'full_detail.dart';
-import 'apps_providers/wordvalue.dart';
-import 'apps_providers/star_Notifier.dart';
+import '../state_management/wordvalue.dart';
+import 'package:dictionary_app/state_management/star_notifier.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});

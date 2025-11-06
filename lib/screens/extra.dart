@@ -1,4 +1,4 @@
-import 'package:dictionary_app/bottom_nav.dart';
+import 'package:dictionary_app/utilities/bottom_nav.dart';
 import 'package:flutter/material.dart';
 
 class Extra extends StatefulWidget {

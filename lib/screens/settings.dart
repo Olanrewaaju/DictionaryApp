@@ -1,8 +1,8 @@
-import 'package:dictionary_app/account.dart';
-import 'package:dictionary_app/saved_word_screen.dart';
+import 'package:dictionary_app/screens/account.dart';
+import 'package:dictionary_app/screens/saved_word_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'apps_providers/theme_notifier.dart';
+import '../state_management/theme_notifier.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'apps_providers/wordvalue.dart';
+import '../state_management/wordvalue.dart';
 import 'package:http/http.dart' as http;
-import 'apps_providers/star_Notifier.dart';
+import 'package:dictionary_app/state_management/star_notifier.dart';
 
 class FullDetail extends StatefulWidget {
   String navWord;

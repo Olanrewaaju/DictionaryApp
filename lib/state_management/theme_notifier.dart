@@ -1,15 +1,32 @@
 // theme_notifier.dart
 import 'package:flutter/material.dart';
+import 'package:dictionary_app/database/sql_theme.dart';
 
 class ThemeNotifier extends ChangeNotifier {
   bool _isDarkMode = false; // Default: light mode
-
+  bool _isLoaded = false;
   bool get isDarkMode => _isDarkMode;
 
   ThemeData get currentTheme => _isDarkMode ? _darkTheme : _lightTheme;
 
-  void toggleTheme() {
+  ThemeNotifier() {
+    _loadTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    _isDarkMode = await SqlTheme.instance.getTheme();
+    _isLoaded = true;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
+
+  bool get isLoaded => _isLoaded;
+
+  void toggleTheme() async {
     _isDarkMode = !_isDarkMode;
+    await SqlTheme.instance.saveTheme(_isDarkMode);
     notifyListeners();
   }
 
