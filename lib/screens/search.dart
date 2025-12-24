@@ -22,6 +22,7 @@ class _SearchState extends State<Search> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FocusScope.of(context).requestFocus(_focusNode);
     });
+    print(_focusNode.hasFocus);
   }
 
   @override
@@ -50,6 +51,7 @@ class _SearchState extends State<Search> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

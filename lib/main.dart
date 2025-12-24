@@ -5,12 +5,9 @@ import 'package:provider/provider.dart';
 import 'state_management/usernamenotif.dart';
 import 'state_management/wordvalue.dart';
 import 'state_management/star_notifier.dart';
-import 'database/sql_theme.dart';
+// import 'database/sql_theme.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await SqlTheme.instance ;
-
   runApp(
     MultiProvider(
       providers: [

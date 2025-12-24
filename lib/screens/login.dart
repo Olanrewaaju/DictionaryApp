@@ -1,4 +1,4 @@
-import 'package:dictionary_app/state_management/wordvalue.dart';
+// import 'package:dictionary_app/state_management/wordvalue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/fieldfortext.dart';
@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final errorName = context.watch<Usernamenotif>().newname(user.text);
+    // final errorName = context.watch<Usernamenotif>().newname(user.text);
     return Scaffold(
       body: Center(
         child: Padding(

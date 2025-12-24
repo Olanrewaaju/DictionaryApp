@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:dictionary_app/state_management/star_notifier.dart';
 
 class FullDetail extends StatefulWidget {
-  String navWord;
-  FullDetail({super.key, required this.navWord});
+  final String navWord;
+  const FullDetail({super.key, required this.navWord});
 
   @override
   State<FullDetail> createState() => _FullDetailState();
